@@ -9,18 +9,41 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     const user = await User.findById(id)
+    done(null, user);
 });
 
 
-//user register midelware
+//new user register midelware
 passport.use('local-signup', new LocalStrategy({
-    usernameField:'email',
-    passwordField:'password',
+    usernameField: 'email',
+    passwordField: 'password',
     passReqToCallback: true
 }, async (req, email, password, done) => {
-    const newUser = new User();
-    newUser.email = email;
-    newUser.password = newUser.encryptPassword(password);
-    await newUser.save();//the saved method take time for finish, use async/await
-    done(null, newUser); //return null for errors and user in case of success
+
+    const user = User.findOne({ email: email })
+    if (user) {
+        return done(null, false, req.flash('signupMessage', 'The email already exist'));
+    } else {
+        const newUser = new User();
+        newUser.email = email;
+        newUser.password = newUser.encryptPassword(password);
+        await newUser.save();//the saved method take time for finish, use async/await
+        done(null, newUser); //return null for errors and user in case of success  
+    }
 }));
+
+
+passport.use('local-signin', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, async (req, email, password, done) => {
+    const user = await User.finOne({ email: email });
+    if (!user) {
+        return done(null, false, req.flash('signinMessage', 'No Use Found.'));
+    }
+    if (!user.comparePassword(password)) {
+        return done(null, false, req.flash('signinMessage', 'incorret password.'));
+    }
+    done(null, user)
+}))

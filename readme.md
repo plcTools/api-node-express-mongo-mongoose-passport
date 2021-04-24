@@ -17,5 +17,6 @@ Make with
     DBCONNECT=XXXXXXXXXXX
     npm run dev    
 
+Landing Page
 
-![Landing Page](images/screenshot1.png  "Logo Title Text 1")
+![Landing Page](src/images/Screenshot1.png "Logo Title Text 1")

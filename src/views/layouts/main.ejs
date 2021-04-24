@@ -7,11 +7,22 @@
     <title>Basic Api Node/Mongo/Passport</title>
   </head>
   <body>
+ <!-- NAVIGATION -->
+ <% if (!user) { %>
+  <a href="/signin">Signin</a>
+  <a href="/signup">Signup</a>
+  <% } else { %>
+  <a href="/logout">Logout</a>
+  <a href="/profile">Profle</a>
+  <% } %>
 
-    <% if (signupMessage) { %>
-    <div><%= signupMessage %></div>
-    
+  <%if (signinMessage) {%>
+    <p><%= signinMessage %></p>
+  <% } %>
+  <%if (signupMessage) {%>
+    <p><%= signupMessage %></p>
+  <% } %>
+
     <% } %> <%- body %>
-
   </body>
 </html>

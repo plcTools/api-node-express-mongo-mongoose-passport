@@ -5,10 +5,10 @@ Make with
  >- Express 
  >- MongoDB Local Connection
  >- Mongoose
- >- Passport (Local Auth)
- >- Views ejs(Login Form)
+ >- Passport (Auth)
+ >- Views ejs(Login Form Boostrap)
 
- Using
+` Using for run`
 
     npm install
     create file .env
@@ -18,3 +18,4 @@ Make with
     npm run dev    
 
 
+![Landing Page](images/screenshot1.png  "Logo Title Text 1")

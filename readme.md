@@ -12,7 +12,7 @@ Make with
 
     npm install
     create file .env
-    Write into .env file the environments variables.
+    Write the environments into .env file  variables.
     PORT=XXXX
     DBCONNECT=XXXXXXXXXXX
     npm run dev    

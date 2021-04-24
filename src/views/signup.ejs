@@ -1,5 +1,9 @@
-<%- layout('layouts/main.ejs') %> 
+<%- layout('layouts/main') %>
 
+    <% if (signupMessage) { %>
+         <div> <%= signupMessage %> </div>
+        <% } %>
+    
 <form action="/signup" method="POST">
     <input type="email" name="email" placeholder="Insert Email" id="email">
     <input type="password" name="password" placeholder="Insert Password" id="password">

@@ -16,7 +16,7 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/profile',
     failureRedirect: '/signup',
-    passReqToCallback: true
+    failureFlash: true
 }));
 
 router.get('/signin', (req, res, next) => {
@@ -26,7 +26,7 @@ router.get('/signin', (req, res, next) => {
 router.post('/signin', passport.authenticate('local-signin', {
     successRedirect: '/profile',
     failureRedirect: '/signin',
-    passReqToCallback: true
+    failureFlash: true
 }));
 
 

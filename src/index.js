@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 const session =require('express-session');
 const flash = require('connect-flash')
+const cors = require( 'cors');
 
 //services initializations
 const app = express();
@@ -18,8 +19,9 @@ app.set('view engine','ejs');//views
 app.set( 'port', process.env.PORT || 3000 );
 
 //middlewares
+app.use(cors({origin:"http://localhost:3000", credentials:true}))
 app.use(morgan('dev'))
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ limit: "30mb", extended:true }));
 app.use(session({
     secret:'mysecretsession',
     resave:false,
